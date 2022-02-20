@@ -41,7 +41,7 @@ def Search(searchval,setvalue,root):
 
 class Dictionary:
     def __init__(self):
-        reader=open(os.getcwd()+"/core/list.txt",'r')
+        reader=open(os.getcwd()+"/list.txt",'r')
         self.newset=set()
         self.parent=Root()
         for i in reader.readlines():
