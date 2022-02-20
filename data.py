@@ -1,4 +1,5 @@
-import os,re;from datetime import datetime
+import os,autocorrect,re;from datetime import datetime
+corrector=autocorrect.Speller()
 try:
     import autocorrect
 except:
@@ -13,9 +14,10 @@ def AddNode(getInput,parent):
     for y in getInput:
         if y not in parent.child:
            parent.child[y]=Root()
-        parent.child[y]                                                                     parent.data=True
+        parent=parent.child[y]
+    parent.data=True
+
 def Search(searchval,setvalue,root):
-    corrector=autocorrect.Speller()
     correctvalue=corrector(searchval)
 
     if searchval != correctvalue:
@@ -24,9 +26,7 @@ def Search(searchval,setvalue,root):
         temp,xx="",root
         def Repeat(kbx,xx):
             for c in range(0,len(searchval)):
-                if searchval[c] == ".":
-                    for yk in xx.child:
-                        global temp
+                if searchval[c] == ".":                                                   for yk in xx.child:                                                       global temp
                         Repeat(c+1,xx)
                         temp+=yk
                 else:
@@ -71,6 +71,7 @@ class Dictionary:
                     searchValue=input("Word to Search: ")
                     Search(str(searchValue),self.newset,self.parent)
             except  Exception as e:
+                print(e)
                 print("Invalid Choice")
 
 if __name__ == "__main__":
