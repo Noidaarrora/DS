@@ -17,7 +17,7 @@ def AddNode(getInput,parent):
         parent=parent.child[y]
     parent.data=True
 
-def Search(searchval,setvalue,root):
+def Search(searchval,root):
     correctvalue=corrector(searchval)
 
     if searchval != correctvalue:
@@ -25,19 +25,18 @@ def Search(searchval,setvalue,root):
     else:
         temp,xx="",root
         def Repeat(kbx,xx):
-            for c in range(0,len(searchval)):
-                if searchval[c] == ".":                                                   for yk in xx.child:                                                       global temp
+            for c in range(int(kbx),len(searchval)):
+                if searchval[c] == ".":
+                    for yk in xx.child.values():
                         Repeat(c+1,xx)
-                        temp+=yk
+                        return True
                 else:
-                    if searchval[c] not in xx.child:
+                    if searchval[c] not in xx.child.values():
                         return False
                     else:
                         xx=xx.child[c]
-                        temp+=xx
-                print(temp)
             return xx.data
-        Repeat(None,xx)
+        return Repeat(0,xx)
 
 class Dictionary:
     def __init__(self):
@@ -65,11 +64,11 @@ class Dictionary:
                     break
                 elif int(getInput) == 2:
                     getvalue=input("Enter the  word to insert:  ")
-                    print(AddNode(str(getvalue),self.parent))
+                    AddNode(str(getvalue),self.parent)
 
                 elif int(getInput)==3:
                     searchValue=input("Word to Search: ")
-                    Search(str(searchValue),self.newset,self.parent)
+                    Search(str(searchValue),self.parent)
             except  Exception as e:
                 print("Invalid Choice")
 
