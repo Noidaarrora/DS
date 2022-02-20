@@ -71,7 +71,6 @@ class Dictionary:
                     searchValue=input("Word to Search: ")
                     Search(str(searchValue),self.newset,self.parent)
             except  Exception as e:
-                print(e)
                 print("Invalid Choice")
 
 if __name__ == "__main__":
